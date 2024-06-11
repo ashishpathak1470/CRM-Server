@@ -14,7 +14,7 @@ const app = express();
 app.use(bodyParser.json());
 
 mongoose
-  .connect(process.env.MONGODB_URI, {
+  .connect('mongodb+srv://ashishpathak1470:pathak@cluster0.f6z2ikp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
