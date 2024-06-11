@@ -6,6 +6,8 @@ const session = require("express-session");
 const cors = require("cors");
 const redis = require('redis');
 
+const PORT = process.env.PORT || 3000;
+
 dotenv.config();
 
 const app = express();
@@ -60,7 +62,6 @@ app.get('/', (req, res) => {
   res.send('Welcome to the CRM Server');
 });
 
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, (err) => {
   if (err) {
     console.error("Error starting server:", err);
