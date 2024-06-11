@@ -44,7 +44,7 @@ app.use(
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://app-crm-beta.vercel.app/",
     credentials: true,
   })
 );

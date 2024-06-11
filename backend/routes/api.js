@@ -167,7 +167,7 @@ module.exports = function (redisClient) {
   const sendPersonalizedMessages = async (audienceMembers) => {
     for (const member of audienceMembers) {
       try {
-        const response = await axios.post("http://localhost:3001/send", {
+        const response = await axios.post("https://crm-mock-server.onrender.com/send", {
           message: `Hi ${member.name}, here is 10% off on your next order`,
           customerId: member._id,
         });
