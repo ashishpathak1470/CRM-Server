@@ -116,27 +116,6 @@ module.exports = function (redisClient) {
     }
   });
 
-  router.get("/customer/:id/orders", async (req, res) => {
-    const customerId = req.params.id;
-
-    if (!mongoose.Types.ObjectId.isValid(customerId)) {
-      return res.status(400).json({ error: "Invalid customerId" });
-    }
-
-    try {
-      const orders = await Order.find({ customerId }).exec();
-      if (!orders) {
-        return res
-          .status(404)
-          .json({ error: "No orders found for this customer" });
-      }
-      res.status(200).json({ orders });
-    } catch (error) {
-      console.error("Error fetching orders:", error.stack);
-      res.status(500).json({ error: "Internal server error" });
-    }
-  });
-
   router.post("/audience/save", async (req, res) => {
     const { filters } = req.body;
     console.log("Saving audience with filters:", filters);
