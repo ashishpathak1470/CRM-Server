@@ -138,12 +138,8 @@ module.exports = function (redisClient) {
   });
 
   router.post("/audience/save", async (req, res) => {
-    const { filters, campaignDetails } = req.body;
+    const { filters } = req.body;
     console.log("Saving audience with filters:", filters);
-
-    if (!campaignDetails || !campaignDetails.campaignName) {
-      return res.status(400).json({ error: "Invalid or missing campaign details" });
-    }
 
     try {
       const query = buildQuery(filters);
@@ -154,21 +150,6 @@ module.exports = function (redisClient) {
         audienceFilters: filters,
         audienceSize: audienceMembers.length,
         audienceMembers: audienceMembers.map((member) => member._id),
-        campaignDetails: {
-          campaignId: campaignDetails.campaignId || new mongoose.Types.ObjectId(),
-          campaignName: campaignDetails.campaignName,
-          startDate: campaignDetails.startDate,
-          endDate: campaignDetails.endDate,
-          description: campaignDetails.description,
-          type: campaignDetails.type,
-          status: campaignDetails.status,
-          createdBy: campaignDetails.createdBy,
-          createdDate: campaignDetails.createdDate,
-          targetAudience: campaignDetails.targetAudience,
-          channels: campaignDetails.channels,
-          goals: campaignDetails.goals,
-          budget: campaignDetails.budget,
-        },
       });
 
       await communicationLog.save();
