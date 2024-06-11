@@ -20,6 +20,9 @@ const communicationLogSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  campaignDetails: {
+    type: Schema.Types.Mixed,
+  },
   status: {
     type: String,
     enum: ["SENT", "FAILED"],

@@ -150,6 +150,7 @@ module.exports = function (redisClient) {
         audienceFilters: filters,
         audienceSize: audienceMembers.length,
         audienceMembers: audienceMembers.map((member) => member._id),
+        campaignDetails: {},
       });
 
       await communicationLog.save();
